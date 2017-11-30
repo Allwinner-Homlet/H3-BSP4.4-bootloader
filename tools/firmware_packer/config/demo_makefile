@@ -1,0 +1,41 @@
+#/*
+#*********************************************************************************************************
+#*                                                eStudio
+#*                                    the All Winner PC's Software Devekopment 
+#*                                               makefile 
+#*
+#*                                    (c) Copyright 2006-2010, Sam.Liu 
+#*                                           All Rights Reserved
+#*
+#* File    : demo
+#* By      : Sam.Liu
+#* Version : v1.0
+#* Date    : 2010-12-2 
+#* Descript:
+#* Update  : date                auther      ver     notes
+#*********************************************************************************************************
+#*/
+
+include ./../../Studio/StudioShare/makefile_cfg/XComplier.cfg
+CC:=$(CCEXE)
+
+TARGET=test.exe
+SRCDIRS:=.
+
+ALL:SUBS $(TARGET) clean
+
+#make the subdir 
+
+SUBS:
+	cd ./testdll && $(MAKE) 
+
+#得到源代码对应的目标文件的列表
+
+$(TARGET):$(SRCCPPS)
+	$(CC) $(TARGET) $(SRCCPPS) 
+
+.PHONY: clean
+clean:
+	@echo Build $(TARGET) Success!!
+
+
